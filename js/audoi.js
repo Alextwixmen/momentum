@@ -8,20 +8,21 @@ let playNum = 0;
 
 export default function playAudio() {
     audio.src = playList[playNum].src;
-    if(isPlay === false){
+    if(!isPlay){
         playAudio1()
     } else{
         pauseAudio() 
     }
 }
 function playAudio1() {
-    isPlay = true; 
     audio.currentTime = 0;
     audio.play();
+    isPlay = true; 
+
 }
 function pauseAudio() {
-    isPlay = false;
     audio.pause();
+    isPlay = false;
     
 }
 function playNext() {
@@ -30,7 +31,11 @@ function playNext() {
     }else{
         playNum++
     }
+    playButton.classList.add('pause');
+    isPlay = false;
+
     playAudio()
+    console.log(isPlay);
 }
 function playPrev() {
     if(playNum === 0){
@@ -38,7 +43,10 @@ function playPrev() {
     }else{
         playNum--
     }
+    playButton.classList.add('pause');
+    isPlay = false;
     playAudio()
+    console.log(isPlay);
 }
 function toggleBtn() {
     if(isPlay === false){
